@@ -1,0 +1,88 @@
+一、开发环境搭建
+MAC
+安装homebrew(具体安装教程详见：此地址)
+
+通过homebrew命令安装go
+
+ brew install go
+配置运行go语言的环境变量
+
+ 1.打开bash_profile文件
+ open ~/.bash_profile
+ 
+ 2.添加环境变量
+ export PATH=${PATH}:/usr/local/opt/go/libexec/bin;
+ export GOPATH=XXXXXXXXXX;
+ 
+ 3.刷新环境变量设置
+ source ~/.bash_profile
+ 
+ 4.命令行运行go命令，显示版本信息
+ go version
+环境变量配置
+配置GOPATH指定的项目路径的子目录
+
+ GOPATH的目录约定必须有三个子目录：
+
+ src 存放源代码（比如：.go .c .h .s等）
+ pkg 编译后生成的文件（比如：.a）
+ bin 编译后生成的可执行文件
+GOPATH的子目录结构
+下载开发工具 LitelIDE 或者Sublime等等,进行开发
+LINUX(centos)
+如果 wget 命令不可以使用，通过centos自带命令yum安装
+
+  yum -y install wget
+通过 wget 命令下载golang包（下面是安装go1.6.3版本，其他版本请查看官方网站替换对应版本号）
+
+ wget https://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz
+解压golang
+
+ tar -C /usr/local -xzf go1.6.3.linux-amd64.tar.gz
+配置go语言的环境变量
+
+ 1.通过vi命令打开/etc/profile文件
+ vi /etc/profile
+ 
+ 2.编辑/etc/profile文添加环境变量
+ export PATH=$PATH:/usr/local/go/bin
+ export GOPATH=XXXXXXXXXX;
+ 
+ 3.刷新环境变量设置
+ source /etc/profile
+ 
+ 4.命令行运行go命令，显示版本信息
+ go version
+二、go程序简单程序入门——hello world
+go程序helloworld程序的编写
+在src目录下新建helloworld项目，并新建helloworld.go文件，然后录入代码如下
+
+ package main
+
+ import "fmt"
+
+ func init() {
+     fmt.Println("init 开始……")
+ }       
+
+ func main() {
+     fmt.Println("main 开始……")
+ }
+helloworld的编译运行
+
+ cd $GOPATH/src/helloworld
+ go get
+ go build
+ helloworld
+ 
+运行结果
+
+ init 开始……
+ main 开始……
+ 
+编译运行结果
+helloworld程序解析
+
+ package : 声明包名：hello world例子，package  main默认建立了main包
+ import : 导入引用包：helloworld例子，import "fmt" 表明引入了系统打印功能的fmt包
+ func : 函数（方法）：hello world例子，init()和main()为系统默认的生命周期方法，程序运行会自动被执行
